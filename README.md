@@ -52,7 +52,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 * [Git](https://git-scm.com)
 * Um navegador web atualizado (Google Chrome, Firefox, Edge, etc.)
 
-### Passo a Passo
+### Caso tenha interesse, aqui esta o link para seu deploy !
 
 1. **Clone este repositório:**
    ```bash
