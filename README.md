@@ -53,6 +53,6 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 ### Caso tenha interesse, aqui esta o link para seu deploy !
 
-1. **Clone este repositório:**
+ **Clone este repositório:**
    ```bash
    git clone [https://github.com/Guilherme1712Moraes/Projeto-Feira-Tecnol-gica.git](https://github.com/Guilherme1712Moraes/Projeto-Feira-Tecnol-gica.git)
