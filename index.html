@@ -665,9 +665,9 @@
       </div>
 
       <div class="rota-select" id="rotaSelect">
-        <button class="active" data-rota="1">Rota 1 · Centro–Jardim</button>
-        <button data-rota="2">Rota 2 · Vila Nova–Industrial</button>
-        <button data-rota="3">Rota 3 · Zona Norte</button>
+        <button class="active" data-rota="1">Rota 1 · Centro & Serviços</button>
+        <button data-rota="2">Rota 2 · Leste / Planalto</button>
+        <button data-rota="3">Rota 3 · Especiais & Logística Reversa</button>
       </div>
 
       <div class="rota-track" id="rotaTrack"></div>
@@ -792,33 +792,28 @@
     });
   });
 
-  // Rotas de coleta
+  // Rotas de coleta atualizadas com pontos reais de Ribeirão Pires
   const rotas = {
     1: {
       dia: 'Segundas e quintas',
       paradas: [
-        { hora: '07h30', nome: 'Saída — Central de Triagem', desc: 'Caminhão de coleta parte da central com rota definida para o Centro.' },
-        { hora: '08h15', nome: 'Ecoponto Centro', desc: 'Recolhimento de papel, plástico, vidro e metal acumulados no ponto.' },
-        { hora: '09h00', nome: 'Ecoponto Jardim das Flores', desc: 'Coleta de vidro e metal, com apoio da cooperativa local.' },
-        { hora: '10h30', nome: 'Retorno — Central de Triagem', desc: 'Material é pesado, separado por tipo e encaminhado para venda.' },
+        { hora: '08h00', nome: 'Paço Municipal', desc: 'Rua Miguel Prisco, 288 — Centro. Recolhimento da coleta seletiva permanente de vidro, plástico, papel, eletrônicos e pilhas.' },
+        { hora: '09h30', nome: 'Secretaria de Meio Ambiente', desc: 'Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar. Coleta de pilhas e baterias entregues na secretaria.' },
+        { hora: '11h00', nome: 'Cooperpires', desc: 'Rua Professor Renato Andregheto, 55 — Aliança. Transbordo do material recolhido no Centro para triagem e processamento pela cooperativa.' }
       ]
     },
     2: {
       dia: 'Terças e sextas',
       paradas: [
-        { hora: '07h00', nome: 'Saída — Cooperativa Parque Industrial', desc: 'Rota atende bairros com maior geração de papel e plástico.' },
-        { hora: '07h50', nome: 'Cooperativa Parque Industrial', desc: 'Coleta de papel e plástico de comércios locais.' },
-        { hora: '09h10', nome: 'Ecoponto Vila Nova', desc: 'Recolhimento de eletrônicos e pilhas para descarte especial.' },
-        { hora: '10h45', nome: 'Retorno — Central de Triagem', desc: 'Eletrônicos seguem para logística reversa com parceiros especializados.' },
+        { hora: '08h30', nome: 'Ecoponto Pátio JB Duarte', desc: 'Avenida Capitão José Galo — Planalto Bela Vista. Recolhimento de resíduos volumosos de papel, plástico, vidro e metal (até 1m³/pessoa).' },
+        { hora: '10h30', nome: 'Cooperpires', desc: 'Rua Professor Renato Andregheto, 55 — Aliança. Entrega dos recicláveis para separação e destinamento pelas equipes da cooperativa.' }
       ]
     },
     3: {
       dia: 'Quartas e sábados',
       paradas: [
-        { hora: '08h00', nome: 'Saída — Central de Triagem', desc: 'Rota cobre toda a Zona Norte, incluindo pontos de óleo de cozinha.' },
-        { hora: '08h40', nome: 'Central de Triagem Municipal', desc: 'Ponto que recebe todos os tipos de material da região.' },
-        { hora: '09h50', nome: 'Coop. Renascer — Óleo', desc: 'Recolhimento de óleo de cozinha usado para produção de biodiesel e sabão.' },
-        { hora: '11h00', nome: 'Fim de rota', desc: 'Material consolidado e registrado no relatório semanal de coleta.' },
+        { hora: '09h00', nome: 'Posto Ipiranga — Centro Alto', desc: 'Avenida Santos André, 700 — Centro Alto. Recolhimento de pilhas e baterias do ponto fixo do posto.' },
+        { hora: '10h15', nome: 'Secretaria de Meio Ambiente', desc: 'Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar. Consolidação dos resíduos eletrônicos e pilhas para destinação ecológica.' }
       ]
     }
   };
