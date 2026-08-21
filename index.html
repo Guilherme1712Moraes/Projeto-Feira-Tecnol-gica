@@ -526,7 +526,7 @@
           <a href="#rotas" class="btn btn-outline">Ver rotas de coleta</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><b>38</b><span>pontos ativos</span></div>
+          <div class="stat"><b>5</b><span>pontos ativos</span></div>
           <div class="stat"><b>7</b><span>rotas semanais</span></div>
           <div class="stat"><b>12t</b><span>recicladas por mês</span></div>
         </div>
@@ -578,7 +578,6 @@
         <button class="filter-btn" data-filter="vidro">Vidro</button>
         <button class="filter-btn" data-filter="metal">Metal</button>
         <button class="filter-btn" data-filter="eletronico">Eletrônicos</button>
-        <button class="filter-btn" data-filter="oleo">Óleo de cozinha</button>
       </div>
 
       <div class="points-grid" id="pointsGrid">
@@ -588,27 +587,42 @@
             <div class="point-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>
             </div>
-            <span class="point-status">Aberto agora</span>
+            <span class="point-status">Até 1m³/pessoa</span>
           </div>
-          <h3>Ecoponto Centro</h3>
-          <p class="addr">Praça das Árvores, s/n — Centro</p>
-          <p class="point-hours">Seg a sáb · 8h–18h</p>
+          <h3>Ecoponto Pátio JB Duarte</h3>
+          <p class="addr">Avenida Capitão José Galo — Planalto Bela Vista</p>
+          <p class="point-hours">Seg a sáb · 8h–17h</p>
           <div class="tag-row">
             <span class="tag">Papel</span><span class="tag">Plástico</span><span class="tag">Vidro</span><span class="tag">Metal</span>
           </div>
         </div>
 
-        <div class="point-card" data-materials="oleo">
+        <div class="point-card" data-materials="papel plastico vidro eletronico">
           <div class="point-top">
             <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
-            <span class="point-status">Aberto agora</span>
+            <span class="point-status">Coleta permanente</span>
           </div>
-          <h3>Coop. Renascer — Óleo</h3>
-          <p class="addr">Rua das Palmeiras, 214 — Jardim das Flores</p>
-          <p class="point-hours">Ter, qui e sáb · 9h–15h</p>
-          <div class="tag-row"><span class="tag">Óleo de cozinha</span></div>
+          <h3>Paço Municipal</h3>
+          <p class="addr">Rua Miguel Prisco, 288 — Centro</p>
+          <p class="point-hours">Seg a sex · Central de coleta seletiva</p>
+          <div class="tag-row">
+            <span class="tag">Vidro</span><span class="tag">Plástico</span><span class="tag">Papel</span><span class="tag">Eletrônicos</span><span class="tag">Pilhas</span>
+          </div>
+        </div>
+
+        <div class="point-card" data-materials="papel plastico vidro metal">
+          <div class="point-top">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>
+            </div>
+            <span class="point-status">Cooperativa</span>
+          </div>
+          <h3>Cooperpires</h3>
+          <p class="addr">Rua Professor Renato Andregheto, 55 — Aliança</p>
+          <p class="point-hours">Cooperativa de trabalho dos catadores</p>
+          <div class="tag-row"><span class="tag">Papel</span><span class="tag">Plástico</span><span class="tag">Vidro</span><span class="tag">Metal</span></div>
         </div>
 
         <div class="point-card" data-materials="eletronico">
@@ -616,53 +630,25 @@
             <div class="point-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
             </div>
-            <span class="point-status">Fecha às 17h</span>
+            <span class="point-status">Pilhas e baterias</span>
           </div>
-          <h3>Ecoponto Vila Nova</h3>
-          <p class="addr">Av. dos Ipês, 880 — Vila Nova</p>
-          <p class="point-hours">Seg a sex · 8h–17h</p>
-          <div class="tag-row"><span class="tag">Eletrônicos</span><span class="tag">Pilhas</span></div>
+          <h3>Secretaria de Meio Ambiente</h3>
+          <p class="addr">Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar, Centro</p>
+          <p class="point-hours">Seg a sex · Atendimento na secretaria</p>
+          <div class="tag-row"><span class="tag">Pilhas</span><span class="tag">Baterias</span></div>
         </div>
 
-        <div class="point-card" data-materials="papel plastico">
+        <div class="point-card" data-materials="eletronico">
           <div class="point-top">
             <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
             </div>
-            <span class="point-status">Aberto agora</span>
+            <span class="point-status">Pilhas e baterias</span>
           </div>
-          <h3>Cooperativa Parque Industrial</h3>
-          <p class="addr">Rua do Trabalho, 45 — Parque Industrial</p>
-          <p class="point-hours">Seg a sáb · 7h–16h</p>
-          <div class="tag-row"><span class="tag">Papel</span><span class="tag">Plástico</span></div>
-        </div>
-
-        <div class="point-card" data-materials="vidro metal">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 6-1 3v9H9v-9L8 9l1-6Z"/></svg>
-            </div>
-            <span class="point-status">Fecha às 18h</span>
-          </div>
-          <h3>Ecoponto Jardim das Flores</h3>
-          <p class="addr">Rua Girassol, 120 — Jardim das Flores</p>
-          <p class="point-hours">Seg a sáb · 8h–18h</p>
-          <div class="tag-row"><span class="tag">Vidro</span><span class="tag">Metal</span></div>
-        </div>
-
-        <div class="point-card" data-materials="papel plastico vidro metal eletronico oleo">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <span class="point-status">Aberto agora</span>
-          </div>
-          <h3>Central de Triagem Municipal</h3>
-          <p class="addr">Rod. do Contorno, km 4 — Zona Norte</p>
-          <p class="point-hours">Todos os dias · 7h–19h</p>
-          <div class="tag-row">
-            <span class="tag">Recebe tudo</span>
-          </div>
+          <h3>Posto Ipiranga — Centro Alto</h3>
+          <p class="addr">Avenida Santos André, 700 — Centro Alto</p>
+          <p class="point-hours">Ponto de coleta fixo no posto</p>
+          <div class="tag-row"><span class="tag">Pilhas</span><span class="tag">Baterias</span></div>
         </div>
 
       </div>
@@ -770,7 +756,7 @@
     </div>
     <div class="footer-bottom container" style="padding-left:0;padding-right:0;">
       <span>© 2026 EcoRotas. Projeto educacional.</span>
-      <span>Feito com dados de exemplo para fins de portfólio.</span>
+      <span>Pontos de coleta reais de Ribeirão Pires. Rotas e estatísticas ainda são dados de exemplo.</span>
     </div>
   </div>
 </footer>
