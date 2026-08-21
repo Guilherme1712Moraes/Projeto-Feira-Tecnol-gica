@@ -303,10 +303,11 @@
     border-radius:100px;
     background:var(--laranja-300);
     color:var(--laranja-700);
+    text-transform:capitalize;
   }
   .point-hours{font-size:0.82rem;font-weight:700;color:var(--verde-700);}
 
-  /* ---------- ROTAS (signature) ---------- */
+  /* ---------- ROTAS ---------- */
   .rotas-wrap{position:relative;}
   .rota-track{position:relative;padding-left:0;}
   .rota-item{
@@ -418,6 +419,84 @@
   .cta-band h2{color:var(--branco);font-size:1.9rem;max-width:480px;}
   .cta-band p{color:rgba(255,253,249,0.75);margin-top:10px;max-width:440px;}
 
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(15,61,46,0.6);
+    backdrop-filter:blur(4px);
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .modal-overlay.open{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .modal{
+    background:var(--papel);
+    border-radius:var(--raio);
+    padding:32px;
+    max-width:520px;
+    width:100%;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    transform:translateY(20px);
+    transition:transform .3s ease;
+    max-height:90vh;
+    overflow-y:auto;
+  }
+  .modal-overlay.open .modal{transform:translateY(0);}
+  .modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  .modal-close{
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    color:var(--tinta-suave);
+  }
+  .form-group{
+    margin-bottom:16px;
+  }
+  .form-group label{
+    display:block;
+    font-size:0.85rem;
+    font-weight:700;
+    margin-bottom:6px;
+    color:var(--verde-900);
+  }
+  .form-group input, .form-group textarea{
+    width:100%;
+    padding:10px 14px;
+    border-radius:var(--raio-sm);
+    border:1px solid rgba(15,61,46,0.2);
+    background:var(--branco);
+    font-family:inherit;
+    font-size:0.95rem;
+  }
+  .checkbox-group{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:6px;
+  }
+  .checkbox-group label{
+    font-weight:500;
+    font-size:0.85rem;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--tinta);
@@ -507,7 +586,7 @@
     <span id="userStatus" style="display:none; font-weight:700; font-size:0.9rem; color:var(--verde-900);">Conectado como:<strong id="userEmail" style="margin-left:4px;"></strong></span>
     <a href="login.html" id="loginLink" style="font-weight: 700; font-size: 0.9rem; text-decoration: none; color: var(--verde-900);">Entrar</a>
     <button id="logoutBtn" style="display:none; background:none; border:none; color:var(--verde-900); font-weight:700; font-size:0.9rem; cursor:pointer;">Sair</button>
-    <a href="#participe" class="nav-cta" id="navCta">Cadastrar ponto</a>
+    <button class="nav-cta open-modal-btn" id="navCta">Cadastrar ponto</button>
   </div>
   <button class="menu-btn" id="menuBtn" aria-label="Abrir menu"><span></span></button>
 </nav>
@@ -526,7 +605,7 @@
           <a href="#rotas" class="btn btn-outline">Ver rotas de coleta</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><b>5</b><span>pontos ativos</span></div>
+          <div class="stat"><b id="statPoints">5</b><span>pontos ativos</span></div>
           <div class="stat"><b>7</b><span>rotas semanais</span></div>
           <div class="stat"><b>12t</b><span>recicladas por mês</span></div>
         </div>
@@ -581,76 +660,7 @@
       </div>
 
       <div class="points-grid" id="pointsGrid">
-
-        <div class="point-card" data-materials="papel plastico vidro metal">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>
-            </div>
-            <span class="point-status">Até 1m³/pessoa</span>
-          </div>
-          <h3>Ecoponto Pátio JB Duarte</h3>
-          <p class="addr">Avenida Capitão José Galo — Planalto Bela Vista</p>
-          <p class="point-hours">Seg a sáb · 8h–17h</p>
-          <div class="tag-row">
-            <span class="tag">Papel</span><span class="tag">Plástico</span><span class="tag">Vidro</span><span class="tag">Metal</span>
-          </div>
-        </div>
-
-        <div class="point-card" data-materials="papel plastico vidro eletronico">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <span class="point-status">Coleta permanente</span>
-          </div>
-          <h3>Paço Municipal</h3>
-          <p class="addr">Rua Miguel Prisco, 288 — Centro</p>
-          <p class="point-hours">Seg a sex · Central de coleta seletiva</p>
-          <div class="tag-row">
-            <span class="tag">Vidro</span><span class="tag">Plástico</span><span class="tag">Papel</span><span class="tag">Eletrônicos</span><span class="tag">Pilhas</span>
-          </div>
-        </div>
-
-        <div class="point-card" data-materials="papel plastico vidro metal">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>
-            </div>
-            <span class="point-status">Cooperativa</span>
-          </div>
-          <h3>Cooperpires</h3>
-          <p class="addr">Rua Professor Renato Andregheto, 55 — Aliança</p>
-          <p class="point-hours">Cooperativa de trabalho dos catadores</p>
-          <div class="tag-row"><span class="tag">Papel</span><span class="tag">Plástico</span><span class="tag">Vidro</span><span class="tag">Metal</span></div>
-        </div>
-
-        <div class="point-card" data-materials="eletronico">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
-            </div>
-            <span class="point-status">Pilhas e baterias</span>
-          </div>
-          <h3>Secretaria de Meio Ambiente</h3>
-          <p class="addr">Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar, Centro</p>
-          <p class="point-hours">Seg a sex · Atendimento na secretaria</p>
-          <div class="tag-row"><span class="tag">Pilhas</span><span class="tag">Baterias</span></div>
-        </div>
-
-        <div class="point-card" data-materials="eletronico">
-          <div class="point-top">
-            <div class="point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
-            </div>
-            <span class="point-status">Pilhas e baterias</span>
-          </div>
-          <h3>Posto Ipiranga — Centro Alto</h3>
-          <p class="addr">Avenida Santos André, 700 — Centro Alto</p>
-          <p class="point-hours">Ponto de coleta fixo no posto</p>
-          <div class="tag-row"><span class="tag">Pilhas</span><span class="tag">Baterias</span></div>
-        </div>
-
+        <!-- Renderizado dinamicamente via JS -->
       </div>
     </div>
   </section>
@@ -724,11 +734,50 @@
           <h2>Conhece um ponto de coleta que ainda não está no mapa?</h2>
           <p>Cadastre o endereço, os materiais aceitos e o horário de funcionamento. Sua contribuição ajuda a fortalecer a rede de coleta da cidade.</p>
         </div>
-        <a href="#" class="btn btn-primary">Cadastrar ponto de coleta</a>
+        <button class="btn btn-primary open-modal-btn">Cadastrar ponto de coleta</button>
       </div>
     </div>
   </section>
 </main>
+
+<!-- MODAL DE CADASTRO -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 style="color:var(--verde-900)">Cadastrar Ponto de Coleta</h3>
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+    </div>
+    <form id="cadastrarPontoForm">
+      <div class="form-group">
+        <label for="nomePonto">Nome do Local</label>
+        <input type="text" id="nomePonto" required placeholder="Ex: Ecoponto Central">
+      </div>
+      <div class="form-group">
+        <label for="enderecoPonto">Endereço Completo</label>
+        <input type="text" id="enderecoPonto" required placeholder="Rua, número e bairro">
+      </div>
+      <div class="form-group">
+        <label for="horarioPonto">Horário de Funcionamento / Observações</label>
+        <input type="text" id="horarioPonto" required placeholder="Ex: Seg a Sex · 8h–17h">
+      </div>
+      <div class="form-group">
+        <label for="statusPonto">Tipo/Status do Ponto</label>
+        <input type="text" id="statusPonto" placeholder="Ex: Até 1m³/pessoa, Cooperativa, Ponto Fixo">
+      </div>
+      <div class="form-group">
+        <label>Materiais Aceitos</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="materiais" value="papel"> Papel</label>
+          <label><input type="checkbox" name="materiais" value="plastico"> Plástico</label>
+          <label><input type="checkbox" name="materiais" value="vidro"> Vidro</label>
+          <label><input type="checkbox" name="materiais" value="metal"> Metal</label>
+          <label><input type="checkbox" name="materiais" value="eletronico"> Eletrônicos</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:12px;">Salvar Ponto</button>
+    </form>
+  </div>
+</div>
 
 <footer>
   <div class="container">
@@ -748,7 +797,7 @@
       <div>
         <h5>Participe</h5>
         <ul>
-          <li><a href="#participe">Cadastrar ponto</a></li>
+          <li><a href="#participe" class="open-modal-btn">Cadastrar ponto</a></li>
           <li><a href="#">Seja voluntário</a></li>
           <li><a href="#">Fale conosco</a></li>
         </ul>
@@ -777,22 +826,113 @@
     navCta.classList.remove('mobile-open');
   }));
 
+  // BANCO DE DADOS DE PONTOS (INICIAL + LOCALSTORAGE)
+  const pontosIniciais = [
+    {
+      id: 1,
+      nome: 'Ecoponto Pátio JB Duarte',
+      endereco: 'Avenida Capitão José Galo — Planalto Bela Vista',
+      horario: 'Seg a sáb · 8h–17h',
+      status: 'Até 1m³/pessoa',
+      materiais: ['papel', 'plastico', 'vidro', 'metal'],
+      icon: 'trash'
+    },
+    {
+      id: 2,
+      nome: 'Paço Municipal',
+      endereco: 'Rua Miguel Prisco, 288 — Centro',
+      horario: 'Seg a sex · Central de coleta seletiva',
+      status: 'Coleta permanente',
+      materiais: ['papel', 'plastico', 'vidro', 'eletronico'],
+      icon: 'check'
+    },
+    {
+      id: 3,
+      nome: 'Cooperpires',
+      endereco: 'Rua Professor Renato Andregheto, 55 — Aliança',
+      horario: 'Cooperativa de trabalho dos catadores',
+      status: 'Cooperativa',
+      materiais: ['papel', 'plastico', 'vidro', 'metal'],
+      icon: 'trash'
+    },
+    {
+      id: 4,
+      nome: 'Secretaria de Meio Ambiente',
+      endereco: 'Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar, Centro',
+      horario: 'Seg a sex · Atendimento na secretaria',
+      status: 'Pilhas e baterias',
+      materiais: ['eletronico'],
+      icon: 'device'
+    },
+    {
+      id: 5,
+      nome: 'Posto Ipiranga — Centro Alto',
+      endereco: 'Avenida Santos André, 700 — Centro Alto',
+      horario: 'Ponto de coleta fixo no posto',
+      status: 'Pilhas e baterias',
+      materiais: ['eletronico'],
+      icon: 'device'
+    }
+  ];
+
+  function getPontos() {
+    const salvos = localStorage.getItem('ecorotasPontos');
+    return salvos ? JSON.parse(salvos) : pontosIniciais;
+  }
+
+  function getIconSvg(type) {
+    if(type === 'device') {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>`;
+    } else if(type === 'check') {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>`;
+    }
+    return `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m-9 0 1 14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-14"/></svg>`;
+  }
+
+  function renderPoints(filter = 'todos') {
+    const pointsGrid = document.getElementById('pointsGrid');
+    const pontos = getPontos();
+    document.getElementById('statPoints').textContent = pontos.length;
+
+    pointsGrid.innerHTML = '';
+
+    pontos.forEach(ponto => {
+      const temMaterial = filter === 'todos' || ponto.materiais.includes(filter);
+      
+      const card = document.createElement('div');
+      card.className = 'point-card';
+      card.dataset.materials = ponto.materiais.join(' ');
+      card.style.display = temMaterial ? 'flex' : 'none';
+
+      const tagsHtml = ponto.materiais.map(m => `<span class="tag">${m}</span>`).join('');
+
+      card.innerHTML = `
+        <div class="point-top">
+          <div class="point-icon">
+            ${getIconSvg(ponto.icon)}
+          </div>
+          <span class="point-status">${ponto.status || 'Ativo'}</span>
+        </div>
+        <h3>${ponto.nome}</h3>
+        <p class="addr">${ponto.endereco}</p>
+        <p class="point-hours">${ponto.horario}</p>
+        <div class="tag-row">${tagsHtml}</div>
+      `;
+      pointsGrid.appendChild(card);
+    });
+  }
+
   // Filtro de pontos de coleta
   const filterBtns = document.querySelectorAll('#filters .filter-btn');
-  const pointCards = document.querySelectorAll('#pointsGrid .point-card');
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.filter;
-      pointCards.forEach(card => {
-        const materials = card.dataset.materials.split(' ');
-        card.style.display = (f === 'todos' || materials.includes(f)) ? 'flex' : 'none';
-      });
+      renderPoints(btn.dataset.filter);
     });
   });
 
-  // Rotas de coleta atualizadas com pontos reais de Ribeirão Pires
+  // Rotas de coleta
   const rotas = {
     1: {
       dia: 'Segundas e quintas',
@@ -846,8 +986,65 @@
     });
   });
 
-  renderRota(1);
+  // MODAL DE CADASTRO
+  const modalOverlay = document.getElementById('modalOverlay');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const openModalBtns = document.querySelectorAll('.open-modal-btn');
+  const cadastrarForm = document.getElementById('cadastrarPontoForm');
 
+  openModalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('open');
+    });
+  });
+
+  closeModalBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('open');
+  });
+
+  modalOverlay.addEventListener('click', (e) => {
+    if(e.target === modalOverlay) modalOverlay.classList.remove('open');
+  });
+
+  cadastrarForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nomePonto').value;
+    const endereco = document.getElementById('enderecoPonto').value;
+    const horario = document.getElementById('horarioPonto').value;
+    const status = document.getElementById('statusPonto').value || 'Ponto Comunitário';
+    
+    const checkboxes = document.querySelectorAll('input[name="materiais"]:checked');
+    const materiais = Array.from(checkboxes).map(cb => cb.value);
+
+    if(materiais.length === 0) {
+      alert('Selecione pelo menos um tipo de material aceito.');
+      return;
+    }
+
+    const novoPonto = {
+      id: Date.now(),
+      nome,
+      endereco,
+      horario,
+      status,
+      materiais,
+      icon: 'trash'
+    };
+
+    const pontos = getPontos();
+    pontos.push(novoPonto);
+    localStorage.setItem('ecorotasPontos', JSON.stringify(pontos));
+
+    cadastrarForm.reset();
+    modalOverlay.classList.remove('open');
+    renderPoints();
+
+    alert('Ponto de coleta cadastrado com sucesso!');
+  });
+
+  // AUTENTICAÇÃO
   function getSessionUser(){
     try { return JSON.parse(localStorage.getItem('ecorotasUser')) || null; }
     catch { return null; }
@@ -878,6 +1075,9 @@
     window.location.reload();
   });
 
+  // Inicialização
+  renderPoints();
+  renderRota(1);
   updateAuthUI();
 </script>
 
