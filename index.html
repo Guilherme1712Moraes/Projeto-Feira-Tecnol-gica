@@ -88,6 +88,11 @@
     background:conic-gradient(from 220deg, var(--verde-500), var(--laranja-500), var(--verde-700));
     flex-shrink:0;
   }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
   .nav-links{
     display:flex;
     gap:28px;
@@ -104,14 +109,37 @@
     transition:.2s;
   }
   .nav-links a:hover{color:var(--verde-900);border-color:var(--laranja-500);}
-  .nav-cta{
-    background:var(--verde-900);
-    color:var(--branco);
-    border:none;
-    padding:10px 20px;
+  .nav-auth{
+    display:flex;
+    gap:10px;
+  }
+  .btn-auth{
+    background:transparent;
+    border:1px solid var(--verde-900);
+    color:var(--verde-900);
+    padding:8px 16px;
     border-radius:100px;
     font-weight:700;
-    font-size:0.9rem;
+    font-size:0.85rem;
+    transition:0.2s;
+  }
+  .btn-auth:hover{
+    background:var(--verde-900);
+    color:var(--branco);
+  }
+  .btn-auth-primary{
+    background:var(--verde-900);
+    border:1px solid var(--verde-900);
+    color:var(--branco);
+    padding:8px 16px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.85rem;
+    transition:0.2s;
+  }
+  .btn-auth-primary:hover{
+    background:var(--verde-700);
+    border-color:var(--verde-700);
   }
   .menu-btn{
     display:none;
@@ -327,6 +355,111 @@
   .ods-13{background:var(--verde-900);}
   .ods-15{background:var(--verde-500);}
 
+  /* ---------- MODAL LOGIN / CADASTRO ---------- */
+  .modal-overlay{
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(15,61,46,0.6);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    padding:20px;
+  }
+  .modal-overlay.open{
+    opacity:1;
+    pointer-events:all;
+  }
+  .modal-card{
+    background:var(--papel);
+    border-radius:var(--raio);
+    width:100%;
+    max-width:420px;
+    padding:32px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    position:relative;
+    transform:translateY(20px);
+    transition:transform 0.3s ease;
+  }
+  .modal-overlay.open .modal-card{
+    transform:translateY(0);
+  }
+  .modal-close{
+    position:absolute;
+    top:16px;right:16px;
+    background:none;border:none;
+    font-size:1.5rem;
+    color:var(--tinta-suave);
+    cursor:pointer;
+  }
+  .auth-tabs{
+    display:flex;
+    gap:10px;
+    border-bottom:2px solid var(--papel-2);
+    margin-bottom:24px;
+  }
+  .auth-tab{
+    background:none;
+    border:none;
+    padding:10px 0;
+    font-weight:700;
+    font-size:1rem;
+    color:var(--tinta-suave);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .auth-tab.active{
+    color:var(--verde-900);
+    border-color:var(--laranja-500);
+  }
+  .auth-form{
+    display:none;
+    flex-direction:column;
+    gap:16px;
+  }
+  .auth-form.active{
+    display:flex;
+  }
+  .form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .form-group label{
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--tinta-suave);
+  }
+  .form-group input{
+    padding:12px 16px;
+    border-radius:var(--raio-sm);
+    border:1px solid rgba(15,61,46,0.2);
+    background:var(--branco);
+    font-family:inherit;
+    font-size:0.95rem;
+    outline:none;
+  }
+  .form-group input:focus{
+    border-color:var(--verde-700);
+  }
+  .btn-submit{
+    background:var(--verde-900);
+    color:var(--branco);
+    border:none;
+    padding:14px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.95rem;
+    margin-top:8px;
+  }
+  .btn-submit:hover{
+    background:var(--verde-700);
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--tinta);
@@ -361,9 +494,9 @@
     .footer-grid{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:720px){
-    .nav-links, .nav-cta{display:none;}
+    .nav-right{display:none;}
     .menu-btn{display:block;}
-    .nav-links.mobile-open{
+    .nav-right.mobile-open{
       display:flex;
       position:absolute;
       top:100%;left:0;right:0;
@@ -373,11 +506,17 @@
       gap:16px;
       border-bottom:1px solid rgba(15,61,46,0.1);
     }
-    .nav-cta.mobile-open{
-      display:inline-flex;
-      position:absolute;
-      top:calc(100% + 176px);
-      left:24px;
+    .nav-links{
+      flex-direction:column;
+      gap:16px;
+    }
+    .nav-auth{
+      flex-direction:column;
+      width:100%;
+    }
+    .btn-auth, .btn-auth-primary{
+      width:100%;
+      text-align:center;
     }
   }
   @media (max-width:640px){
@@ -403,11 +542,17 @@
     <span class="logo-mark"></span>
     EcoRotas
   </div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#rotas">Rotas</a></li>
-    <li><a href="#ods">ODS</a></li>
-    <li><a href="#participe">Participe</a></li>
-  </ul>
+  <div class="nav-right" id="navRight">
+    <ul class="nav-links">
+      <li><a href="#rotas">Rotas</a></li>
+      <li><a href="#ods">ODS</a></li>
+      <li><a href="#participe">Participe</a></li>
+    </ul>
+    <div class="nav-auth">
+      <button class="btn-auth" id="openLoginBtn">Entrar</button>
+      <button class="btn-auth-primary" id="openRegisterBtn">Cadastrar</button>
+    </div>
+  </div>
   <button class="menu-btn" id="menuBtn" aria-label="Abrir menu"><span></span></button>
 </nav>
 </header>
@@ -520,8 +665,48 @@
       </div>
     </div>
   </section>
-
 </main>
+
+<!-- MODAL DE AUTENTICAÇÃO (LOGIN E CADASTRO) -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-card">
+    <button class="modal-close" id="closeModalBtn">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin">Entrar</button>
+      <button class="auth-tab" id="tabRegister">Cadastrar</button>
+    </div>
+
+    <!-- FORMULÁRIO DE LOGIN -->
+    <form class="auth-form active" id="formLogin" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <label for="loginEmail">E-mail</label>
+        <input type="email" id="loginEmail" placeholder="seu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Senha</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-submit">Entrar na plataforma</button>
+    </form>
+
+    <!-- FORMULÁRIO DE CADASTRO -->
+    <form class="auth-form" id="formRegister" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <label for="regName">Nome completo</label>
+        <input type="text" id="regName" placeholder="Seu nome" required>
+      </div>
+      <div class="form-group">
+        <label for="regEmail">E-mail</label>
+        <input type="email" id="regEmail" placeholder="seu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Criar Senha</label>
+        <input type="password" id="regPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-submit">Criar minha conta</button>
+    </form>
+  </div>
+</div>
 
 <footer>
   <div class="container">
@@ -555,16 +740,12 @@
 <script>
   // Menu mobile
   const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
+  const navRight = document.getElementById('navRight');
   menuBtn.addEventListener('click', () => {
     menuBtn.classList.toggle('open');
-    navLinks.classList.toggle('mobile-open');
+    navRight.classList.toggle('mobile-open');
   });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menuBtn.classList.remove('open');
-    navLinks.classList.remove('mobile-open');
-  }));
-
+  
   // Rotas de coleta
   const rotas = {
     1: {
@@ -586,7 +767,7 @@
       dia: 'Quartas e sábados',
       paradas: [
         { hora: '09h00', nome: 'Posto Ipiranga — Centro Alto', desc: 'Avenida Santos André, 700 — Centro Alto. Recolhimento de pilhas e baterias do ponto fixo do posto.' },
-        { hora: '10h15', nome: 'Secretaria de Meio Ambiente', desc: 'Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar. Consolidação dos resíduos eletrônicos e pilhas para destinação ecológica.' }
+        { hora: '1015', nome: 'Secretaria de Meio Ambiente', desc: 'Rua Felipe Sabbag, 200 — Shopping Garden, 2º andar. Consolidação dos resíduos eletrônicos e pilhas para destinação ecológica.' }
       ]
     }
   };
@@ -619,7 +800,48 @@
     });
   });
 
-  // Inicialização
+  // Controle do Modal de Autenticação
+  const authModal = document.getElementById('authModal');
+  const openLoginBtn = document.getElementById('openLoginBtn');
+  const openRegisterBtn = document.getElementById('openRegisterBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const formLogin = document.getElementById('formLogin');
+  const formRegister = document.getElementById('formRegister');
+
+  function openModal(tab = 'login') {
+    authModal.classList.add('open');
+    if (tab === 'login') {
+      switchTab(tabLogin, formLogin, tabRegister, formRegister);
+    } else {
+      switchTab(tabRegister, formRegister, tabLogin, formLogin);
+    }
+  }
+
+  function closeModal() {
+    authModal.classList.remove('open');
+  }
+
+  function switchTab(activeTab, activeForm, inactiveTab, inactiveForm) {
+    activeTab.classList.add('active');
+    activeForm.classList.add('active');
+    inactiveTab.classList.remove('active');
+    inactiveForm.classList.remove('active');
+  }
+
+  openLoginBtn.addEventListener('click', () => openModal('login'));
+  openRegisterBtn.addEventListener('click', () => openModal('register'));
+  closeModalBtn.addEventListener('click', closeModal);
+
+  tabLogin.addEventListener('click', () => switchTab(tabLogin, formLogin, tabRegister, formRegister));
+  tabRegister.addEventListener('click', () => switchTab(tabRegister, formRegister, tabLogin, formLogin));
+
+  authModal.addEventListener('click', (e) => {
+    if (e.target === authModal) closeModal();
+  });
+
+  // Inicialização das rotas
   renderRota(1);
 </script>
 
